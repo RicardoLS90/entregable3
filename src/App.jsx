@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Residentinfo from './components/Residentinfo'
 import imageheader from './assets/img/headerrickandmorty.jpg'
+import imglogo from './assets/img/Rick-And-Morty-Logo.png'
 
 function App() {
   const [location, setlocation]=useState({})
@@ -30,27 +31,35 @@ function App() {
     <div className="App">
       <header><img src={imageheader} alt="" /></header>
 
-      <h1 className='wiki'>Rick and Morty Wiki</h1>
+      <img src={imglogo} alt="" className="wiki" />
 
       <div className='input'>
         <input type="text" value={id} onChange={e=>setid(e.target.value)}/>
-      <button onClick={changeid}>Search Id</button></div>
+      <button onClick={changeid}>Search Planet</button>
+      </div>
       
-      <nav><h1>{location.name}</h1>
-      <div>
-      <p><b>Type of location:</b>  {location.type}</p>
-      <p><b>Dimension:</b>  {location.dimension}</p>
-      <p><b>ID:</b>  {location.id}</p></div></nav>
+      <nav>
+        <h1 className='locationname'>{location.name}</h1>
+        <div className="description">
+        <p><b>Type of location:</b>  {location.type}</p>
+        <p><b>Dimension:</b>  {location.dimension}</p>
+        <p><b>ID:</b>  {location.id}</p>
+        </div>
+      </nav>
       
 
       
       <div className='residents'>
-        <h1>RESIDENTS:</h1>
+        <div className='residentcontainer'>
+        <h1 className='residenttittle'>RESIDENTS</h1>
+        </div>
+        <div className='infocontainer'>
         {
         location.residents?.map(resident => ( 
         <Residentinfo url={resident} key={resident} />
         )
       )}
+        </div>
       </div>
      
       
